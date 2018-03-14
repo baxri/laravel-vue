@@ -16,5 +16,24 @@ Route::get('/', function () {
 });
 
 Route::get('/ping', function () {
-    return 'pong';
+    $str = 'agdhga';
+    $arr = str_split($str);
+
+    $is = true;
+
+    foreach ($arr as $key => $symbol){
+
+        $index = $key+1;
+
+        if($key == $index){
+            break;
+        }
+
+        if($symbol != $arr[count($arr)-$index]){
+            $is = false;
+            break;
+        }
+    }
+
+    var_dump($is);
 });
