@@ -15,7 +15,8 @@
                             <label class="col-md-4 control-label">{{ trans('backpack::base.email_address') }}</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                {{--<input type="email" class="form-control" name="email" value="{{ old('email') }}">--}}
+                                <input type="email" class="form-control" name="email" value="admin@bibi.ge">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -29,7 +30,7 @@
                             <label class="col-md-4 control-label">{{ trans('backpack::base.password') }}</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password" value="admin">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
