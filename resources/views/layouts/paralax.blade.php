@@ -15,14 +15,14 @@
     <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">Logo</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="#">Homepage</a></li>
-            <li><a href="#">Contacts</a></li>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/contact">Contacts</a></li>
         </ul>
-
-
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
+
+@yield('content')
 
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
