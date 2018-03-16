@@ -11,6 +11,7 @@
     <link href="css/libs/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+<div id="app">
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">Logo</a>
@@ -154,10 +155,13 @@
 </footer>
 
 
+
+
+</div>
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="/js/libs/materialize.js"></script>
 <script src="/js/libs/init.js"></script>
-
+<script src="/js/app.js"></script>
 </body>
 </html>
