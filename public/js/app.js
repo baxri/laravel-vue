@@ -43521,6 +43521,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -43530,12 +43534,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             name: '',
             email: ''
-
         };
     },
     mounted: function mounted() {},
 
-    methods: {}
+    methods: {
+        validateForm: function validateForm() {}
+    }
 });
 
 /***/ }),
@@ -43543,12 +43548,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports) {
 
 
-
-// Or with jQuery
-
 $(document).ready(function () {
    console.log('chemi kai');
-   $('select').formSelect();
+   $('select').material_select();
 });
 
 /***/ }),
@@ -43559,80 +43561,168 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("form", { staticClass: "col l12 s12" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "input-field col l4 s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
+                }
+              ],
+              staticClass: "validate",
+              attrs: {
+                placeholder: "Enter full name",
+                id: "name",
+                type: "text"
+              },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "name" } }, [_vm._v("Full Name")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col l4 s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
+                }
+              ],
+              staticClass: "validate",
+              attrs: {
+                placeholder: "Enter Email Address",
+                id: "email",
+                type: "text"
+              },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col l4 s12" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.category,
+                    expression: "category"
+                  }
+                ],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.category = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Choose Category")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("Technical")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("Operator")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "3" } }, [
+                  _vm._v("Administration")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("label", [_vm._v("Category")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "input-field col l12 s12" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.text,
+                  expression: "text"
+                }
+              ],
+              staticClass: "materialize-textarea",
+              attrs: { placeholder: "Enter Additional Text", id: "text" },
+              domProps: { value: _vm.text },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.text = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "text" } }, [_vm._v("Text")])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("form", { staticClass: "col s12" }, [
-          _c("div", { staticClass: "col s12" }, [
-            _c("h1", [_vm._v("Contact Form")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "input-field col s4" }, [
-              _c("input", {
-                staticClass: "validate",
-                attrs: {
-                  placeholder: "Enter full name",
-                  id: "name",
-                  type: "text"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Full Name")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-field col s4" }, [
-              _c("input", {
-                staticClass: "validate",
-                attrs: {
-                  placeholder: "Enter Email Address",
-                  id: "email",
-                  type: "text"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "email" } }, [_vm._v("Email")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-field col s4" }, [
-              _c("select", [
-                _c(
-                  "option",
-                  { attrs: { value: "", disabled: "", selected: "" } },
-                  [_vm._v("Choose your option")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [_vm._v("Option 1")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("Option 2")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("Option 3")])
-              ]),
-              _vm._v(" "),
-              _c("label", [_vm._v("Materialize Select")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "input-field col s12" }, [
-              _c("textarea", {
-                staticClass: "materialize-textarea",
-                attrs: { placeholder: "Enter Additional Text", id: "text" }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "text" } }, [_vm._v("Text")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col s12" })
-          ])
+    return _c("div", { staticClass: "row" }, [_c("br"), _vm._v(" "), _c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col l3 s12" }, [
+        _c("a", { staticClass: "waves-effect waves-light btn-large s12" }, [
+          _c("i", { staticClass: "material-icons left" }, [_vm._v("send")]),
+          _vm._v("\n                        Send\n                    ")
         ])
       ])
     ])
