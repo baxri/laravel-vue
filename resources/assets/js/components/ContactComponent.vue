@@ -3,14 +3,21 @@
         <div class="row">
             <form class="col l12 s12">
                 <div class="row">
+
                    <br />
                    <br />
                 </div>
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input v-model="name" placeholder="Enter full name" id="name" type="text" class="validate">
+                        <input v-model="name"
+                               v-on:input="$v.name.$touch"
+                               v-bind:class="{invalid: $v.name.$error, valid: $v.name.$dirty && !$v.name.$invalid}"
+                               placeholder="Enter full name" id="name" type="text" class="">
                         <label for="name">Full Name</label>
                     </div>
+                    <pre>
+                    {{$v}}
+                    </pre>
                     <div class="input-field col l4 s12">
                         <input v-model="email" placeholder="Enter Email Address" id="email" type="text" class="validate">
                         <label for="email">Email</label>
@@ -33,10 +40,13 @@
                 </div>
                 <div class="row">
                     <div class="col l3 s12">
-                        <a class="waves-effect waves-light btn-large s12">
+                        <a
+                           class="waves-effect waves-light btn-large s12"
+                           v-bind:class="{disabled: $v.$invalid}">
                             <i class="material-icons left">send</i>
-                            Send
+                            {{$v.$invalid}}
                         </a>
+
                     </div>
                 </div>
             </form>
@@ -46,6 +56,7 @@
 
 <script>
 
+    import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators';
     import contact from './scripts/Contact.js';
 
     export default {
@@ -53,7 +64,26 @@
             return {
                 name   : '',
                 email  : '',
+                category  : '',
+                text  : '',
             };
+        },
+        validations: {
+            name: {
+                required,
+                minLength: minLength(3),
+            },
+            email: {
+                required,
+                email
+            },
+            category:{
+                required,
+                numeric,
+            },
+            text: {
+                maxlength: maxLength(300)
+            }
         },
         mounted() {
 
