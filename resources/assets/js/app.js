@@ -22,7 +22,7 @@ Vue.component('contact-component', require('./components/ContactComponent.vue'))
 
 import Vuelidate from 'vuelidate'
 
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
 
 const app = new Vue({
     el: '#app'

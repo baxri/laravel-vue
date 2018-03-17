@@ -43619,7 +43619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             name: '',
             email: '',
-            category: '',
+            selected: '',
             text: ''
         };
     },
@@ -43632,7 +43632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             required: __WEBPACK_IMPORTED_MODULE_0_vuelidate_lib_validators__["required"],
             email: __WEBPACK_IMPORTED_MODULE_0_vuelidate_lib_validators__["email"]
         },
-        category: {
+        selected: {
             required: __WEBPACK_IMPORTED_MODULE_0_vuelidate_lib_validators__["required"],
             numeric: __WEBPACK_IMPORTED_MODULE_0_vuelidate_lib_validators__["numeric"]
         },
@@ -44333,7 +44333,9 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")])
+            _c("label", { attrs: { for: "email" } }, [
+              _vm._v("Email " + _vm._s(_vm.email))
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-field col l4 s12" }, [
@@ -44344,8 +44346,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.category,
-                    expression: "category"
+                    value: _vm.selected,
+                    expression: "selected"
                   }
                 ],
                 on: {
@@ -44358,28 +44360,28 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.category = $event.target.multiple
+                    _vm.selected = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
                 }
               },
               [
-                _c("option", { attrs: { value: "", selected: "" } }, [
-                  _vm._v("Choose Category")
+                _c("option", { attrs: { disabled: "", value: "" } }, [
+                  _vm._v("Please select one")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [_vm._v("Technical")]),
+                _c("option", [_vm._v("A")]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("Operator")]),
+                _c("option", [_vm._v("B")]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [
-                  _vm._v("Administration")
-                ])
+                _c("option", [_vm._v("C")])
               ]
             ),
             _vm._v(" "),
-            _c("label", [_vm._v("Category")])
+            _c("label", { attrs: { for: "category" } }, [
+              _vm._v("Category " + _vm._s(_vm.selected))
+            ])
           ])
         ]),
         _vm._v(" "),

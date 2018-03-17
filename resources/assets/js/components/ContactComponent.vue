@@ -20,16 +20,16 @@
                     </pre>
                     <div class="input-field col l4 s12">
                         <input v-model="email" placeholder="Enter Email Address" id="email" type="text" class="validate">
-                        <label for="email">Email</label>
+                        <label for="email">Email {{email}}</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <select v-model="category">
-                            <option value="" selected>Choose Category</option>
-                            <option value="1">Technical</option>
-                            <option value="2">Operator</option>
-                            <option value="3">Administration</option>
+                        <select v-model="selected">
+                            <option disabled value="">Please select one</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
                         </select>
-                        <label>Category</label>
+                        <label for="category">Category {{selected}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -64,7 +64,7 @@
             return {
                 name   : '',
                 email  : '',
-                category  : '',
+                selected  : '',
                 text  : '',
             };
         },
@@ -77,7 +77,7 @@
                 required,
                 email
             },
-            category:{
+            selected:{
                 required,
                 numeric,
             },
