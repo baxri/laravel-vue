@@ -159,9 +159,10 @@
 
 </div>
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="/js/libs/materialize.js"></script>
-<script src="/js/libs/init.js"></script>
+
+{{--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>--}}
 <script src="/js/app.js"></script>
+<script src="/js/libs/materialize.js"></script>
+{{--<script src="/js/libs/init.js"></script>--}}
 </body>
 </html>
