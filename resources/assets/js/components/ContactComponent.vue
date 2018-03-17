@@ -15,19 +15,17 @@
                                placeholder="Enter full name" id="name" type="text" class="">
                         <label for="name">Full Name</label>
                     </div>
-                    <pre>
-                    {{$v}}
-                    </pre>
+
                     <div class="input-field col l4 s12">
                         <input v-model="email" placeholder="Enter Email Address" id="email" type="text" class="validate">
                         <label for="email">Email {{email}}</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <select v-model="selected">
-                            <option disabled value="">Please select one</option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
+                        <select v-material-select:change="selected" id="selected" name="selected">
+                            <option value="">Please select one</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
                         </select>
                         <label for="category">Category {{selected}}</label>
                     </div>

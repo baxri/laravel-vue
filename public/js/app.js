@@ -1174,8 +1174,36 @@ Vue.component('contact-component', __webpack_require__(43));
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuelidate___default.a);
 
+Vue.directive('material-select', {
+    bind: function bind(el, binding, vnode) {
+        $(function () {
+            $(el).material_select();
+        });
+        var arg = binding.arg;
+        if (!arg) arg = "change";
+        arg = "on" + arg;
+        el[arg] = function () {
+
+            if (binding.expression) {
+                if (binding.expression in vnode.context.$data) {
+                    vnode.context.$data[binding.expression] = el.value;
+                } else if (vnode.context[binding.expression] && vnode.context[binding.expression].length <= 1) {
+                    vnode.context[binding.expression](el.value);
+                } else {
+                    throw new Error('Directive v-' + binding.name + " can not take more than 1 argument");
+                }
+            } else {
+                throw new Error('Directive v-' + binding.name + " must take value");
+            }
+        };
+    },
+    unbind: function unbind(el) {
+        $(el).material_select('destroy');
+    }
+});
+
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 
 });
 
@@ -43607,8 +43635,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -44302,10 +44328,6 @@ var render = function() {
             _c("label", { attrs: { for: "name" } }, [_vm._v("Full Name")])
           ]),
           _vm._v(" "),
-          _c("pre", [
-            _vm._v("                " + _vm._s(_vm.$v) + "\n                ")
-          ]),
-          _vm._v(" "),
           _c("div", { staticClass: "input-field col l4 s12" }, [
             _c("input", {
               directives: [
@@ -44344,38 +44366,25 @@ var render = function() {
               {
                 directives: [
                   {
-                    name: "model",
-                    rawName: "v-model",
+                    name: "material-select",
+                    rawName: "v-material-select:change",
                     value: _vm.selected,
-                    expression: "selected"
+                    expression: "selected",
+                    arg: "change"
                   }
                 ],
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selected = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
+                attrs: { id: "selected", name: "selected" }
               },
               [
-                _c("option", { attrs: { disabled: "", value: "" } }, [
+                _c("option", { attrs: { value: "" } }, [
                   _vm._v("Please select one")
                 ]),
                 _vm._v(" "),
-                _c("option", [_vm._v("A")]),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("A")]),
                 _vm._v(" "),
-                _c("option", [_vm._v("B")]),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("B")]),
                 _vm._v(" "),
-                _c("option", [_vm._v("C")])
+                _c("option", { attrs: { value: "3" } }, [_vm._v("C")])
               ]
             ),
             _vm._v(" "),

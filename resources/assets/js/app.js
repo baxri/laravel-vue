@@ -24,6 +24,43 @@ import Vuelidate from 'vuelidate'
 
 Vue.use(Vuelidate);
 
+
+Vue.directive('material-select', {
+    bind:function(el,binding,vnode){
+        $(function () {
+            $(el).material_select();
+
+        });
+        var arg = binding.arg;
+        if(!arg)arg="change";
+        arg = "on"+arg;
+        el[arg]=function() {
+
+            if (binding.expression) {
+                if (binding.expression in vnode.context.$data) {
+                    vnode.context.$data[binding.expression] = el.value;
+
+                } else if (vnode.context[binding.expression] &&
+                    vnode.context[binding.expression].length <= 1) {
+                    vnode.context[binding.expression](el.value);
+
+                } else {
+                    throw new Error('Directive v-' + binding.name + " can not take more than 1 argument");
+                }
+
+
+            }
+            else {
+                throw new Error('Directive v-' + binding.name + " must take value");
+            }
+        }
+
+    },
+    unbind:function(el) {
+        $(el).material_select('destroy');
+    }
+});
+
 const app = new Vue({
     el: '#app'
 
