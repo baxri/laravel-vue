@@ -34,6 +34,7 @@ Vue.directive('material-select', {
         var arg = binding.arg;
         if(!arg)arg="change";
         arg = "on"+arg;
+
         el[arg]=function() {
 
             if (binding.expression) {
@@ -47,7 +48,6 @@ Vue.directive('material-select', {
                 } else {
                     throw new Error('Directive v-' + binding.name + " can not take more than 1 argument");
                 }
-
 
             }
             else {
@@ -63,5 +63,4 @@ Vue.directive('material-select', {
 
 const app = new Vue({
     el: '#app'
-
 });

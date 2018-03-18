@@ -19,3 +19,10 @@ Route::get('/contact', function () {
     return view('pages.contact');
 });
 
+Route::post('/send-email', function () {
+    return response()->json([
+        'errorcode' => 0,
+        'message' => 'OK',
+    ]);
+});
+

@@ -40,7 +40,9 @@
                     <div class="col l3 s12">
                         <a
                            class="waves-effect waves-light btn-large s12"
-                           v-bind:class="{disabled: $v.$invalid}">
+                           v-bind:class="{disabled: $v.$invalid}"
+                            v-on:click="sendEmail"
+                        >
                             <i class="material-icons left">send</i>
                             {{$v.$invalid}}
                         </a>
@@ -60,10 +62,10 @@
     export default {
         data: function(){
             return {
-                name   : '',
-                email  : '',
-                selected  : '',
-                text  : '',
+                name   : 'sdfsdf',
+                email  : 'sfd@gmail.com',
+                selected  : '2',
+                text  : 'sjdajsdj jashd aljshd slad ',
             };
         },
         validations: {
@@ -80,6 +82,7 @@
                 numeric,
             },
             text: {
+                required,
                 maxlength: maxLength(300)
             }
         },
@@ -87,8 +90,19 @@
 
         },
         methods:{
-            validateForm: function(){
+            sendEmail: function(){
+                axios.post('send-email', {
+                    body: data,
+                })
+                    .then(response => {
 
+                        console.log(response);
+
+                        this.posts = response.data
+                    })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
             }
         }
     }
