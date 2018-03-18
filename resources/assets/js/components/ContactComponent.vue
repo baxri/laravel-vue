@@ -1,55 +1,61 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <form class="col l12 s12">
-                <div class="row">
-                   <br />
-                   <br />
-                </div>
-                <div class="row">
-                    <div class="input-field col l4 s12">
-                        <input v-model="name"
-                               v-on:input="$v.name.$touch"
-                               v-bind:class="{invalid: $v.name.$error, valid: $v.name.$dirty && !$v.name.$invalid}"
-                               placeholder="Enter full name" id="name" type="text" class="">
-                        <label for="name">Full Name</label>
-                    </div>
+   <div>
+       <loader-component v-if="show_loader"></loader-component>
+       <div class="container">
+           <div class="row">
+               <form class="col l12 s12">
+                   <div class="row">
 
-                    <div class="input-field col l4 s12">
-                        <input v-model="email" placeholder="Enter Email Address" id="email" type="text" class="validate">
-                        <label for="email">Email {{email}}</label>
-                    </div>
-                    <div class="input-field col l4 s12">
-                        <select v-material-select:change="selected" id="selected" name="selected">
-                            <option value="">Please select one</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                        </select>
-                        <label for="category">Category {{selected}}</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col l12 s12">
-                        <textarea v-model="text" placeholder="Enter Additional Text" id="text" class="materialize-textarea"></textarea>
-                        <label for="text">Text</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col l3 s12">
-                        <a
-                           class="waves-effect waves-light btn-large s12"
-                           v-bind:class="{disabled: $v.$invalid}"
-                            v-on:click="sendEmail">
-                            <i class="material-icons left">send</i>
-                            {{$v.$invalid}}
-                        </a>
 
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+                       <br />
+                       <br />
+                   </div>
+
+                   <div class="row">
+                       <div class="input-field col l4 s12">
+                           <input v-model="name"
+                                  v-on:input="$v.name.$touch"
+                                  v-bind:class="{invalid: $v.name.$error, valid: $v.name.$dirty && !$v.name.$invalid}"
+                                  placeholder="Enter full name" id="name" type="text" class="">
+                           <label for="name">Full Name</label>
+                       </div>
+
+                       <div class="input-field col l4 s12">
+                           <input v-model="email" placeholder="Enter Email Address" id="email" type="text" class="validate">
+                           <label for="email">Email {{email}}</label>
+                       </div>
+                       <div class="input-field col l4 s12">
+                           <select v-material-select:change="selected" id="selected" name="selected">
+                               <option value="">Please select one</option>
+                               <option value="1">A</option>
+                               <option value="2">B</option>
+                               <option value="3">C</option>
+                           </select>
+                           <label for="category">Category {{selected}}</label>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="input-field col l12 s12">
+                           <textarea v-model="text" placeholder="Enter Additional Text" id="text" class="materialize-textarea"></textarea>
+                           <label for="text">Text</label>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col l3 s12">
+                           <a
+                                   class="waves-effect waves-light btn-large s12"
+                                   v-bind:class="{disabled: $v.$invalid || sending}"
+                                   v-on:click="sendEmail">
+                               <i class="material-icons left">send</i>
+                               Send Email
+                           </a>
+
+                       </div>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
 </template>
 
 <script>
@@ -60,6 +66,9 @@
     export default {
         data: function(){
             return {
+                sending: false,
+                show_loader: false,
+                errors: [],
                 name   : 'sdfsdf',
                 email  : 'sfd@gmail.com',
                 selected  : '2',
@@ -90,7 +99,8 @@
         methods:{
             sendEmail: function(){
 
-                console.log(this.name);
+                this.show_loader = true;
+                this.sending = true;
 
                 axios.post('send-email', {
                     body: {
@@ -103,9 +113,14 @@
                     .then(response => {
                         console.log(response);
                         this.posts = response.data
+                        this.show_loader = false;
+                        this.sending = false;
+
                     })
                     .catch(e => {
                         this.errors.push(e)
+                        this.show_loader = false;
+                        this.sending = false;
                     })
             }
         }
