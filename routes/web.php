@@ -19,10 +19,13 @@ Route::get('/contact', function () {
     return view('pages.contact');
 });
 
-Route::post('/send-email', function () {
+Route::post('/send-email', function ( \Illuminate\Http\Request $request ) {
+
+    $content =json_decode( $request->getContent());
+
     return response()->json([
         'errorcode' => 0,
-        'message' => 'OK',
+        'message' => $content->body->name,
     ]);
 });
 

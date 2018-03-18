@@ -3,7 +3,6 @@
         <div class="row">
             <form class="col l12 s12">
                 <div class="row">
-
                    <br />
                    <br />
                 </div>
@@ -41,8 +40,7 @@
                         <a
                            class="waves-effect waves-light btn-large s12"
                            v-bind:class="{disabled: $v.$invalid}"
-                            v-on:click="sendEmail"
-                        >
+                            v-on:click="sendEmail">
                             <i class="material-icons left">send</i>
                             {{$v.$invalid}}
                         </a>
@@ -65,7 +63,7 @@
                 name   : 'sdfsdf',
                 email  : 'sfd@gmail.com',
                 selected  : '2',
-                text  : 'sjdajsdj jashd aljshd slad ',
+                text  : 'sjdajsdj jashd aljshd slad',
             };
         },
         validations: {
@@ -91,13 +89,19 @@
         },
         methods:{
             sendEmail: function(){
+
+                console.log(this.name);
+
                 axios.post('send-email', {
-                    body: data,
+                    body: {
+                        name: this.name,
+                        email: this.email,
+                        selected: this.selected,
+                        text: this.text,
+                    },
                 })
                     .then(response => {
-
                         console.log(response);
-
                         this.posts = response.data
                     })
                     .catch(e => {

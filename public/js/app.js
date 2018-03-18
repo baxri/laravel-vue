@@ -43724,8 +43724,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -43737,7 +43735,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: 'sdfsdf',
             email: 'sfd@gmail.com',
             selected: '2',
-            text: 'sjdajsdj jashd aljshd slad '
+            text: 'sjdajsdj jashd aljshd slad'
         };
     },
     validations: {
@@ -43764,12 +43762,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sendEmail: function sendEmail() {
             var _this = this;
 
+            console.log(this.name);
+
             axios.post('send-email', {
-                body: data
+                body: {
+                    name: this.name,
+                    email: this.email,
+                    selected: this.selected,
+                    text: this.text
+                }
             }).then(function (response) {
-
                 console.log(response);
-
                 _this.posts = response.data;
             }).catch(function (e) {
                 _this.errors.push(e);
