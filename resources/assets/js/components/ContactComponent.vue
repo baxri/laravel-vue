@@ -5,8 +5,6 @@
            <div class="row">
                <form class="col l12 s12">
                    <div class="row">
-
-
                        <br />
                        <br />
                    </div>
@@ -101,6 +99,7 @@
 
                 this.show_loader = true;
                 this.sending = true;
+
 
                 axios.post('send-email', {
                     body: {
